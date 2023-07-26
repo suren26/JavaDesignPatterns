@@ -17,13 +17,15 @@ public class Loginpage {
     private WebElement username;
    @FindBy(id = "password")
     private WebElement password;
+    @FindBy(id = "login-button")
+    private WebElement loginbutton;
 
     public void login(WebDriver driver){
         String userName="standard_user";
         String pwd="secret_sauce";
         username.sendKeys(userName);
         password.sendKeys(pwd);
-        //return Loginpage;
+        loginbutton.click();
     }
     public Loginpage(WebDriver driver) {
         PageFactory.initElements(driver, this);
