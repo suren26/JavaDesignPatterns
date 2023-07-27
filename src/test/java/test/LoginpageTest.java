@@ -2,6 +2,7 @@ package test;
 import driver.DriverManager;
 import driver.DriverManagerFactory;
 import framework.TestLogger;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,10 +14,11 @@ public class LoginpageTest {
     WebDriver driver;
     DriverManager driverManager;
     Loginpage lp;
-    TestLogger logger;
+    Logger logger;
     @BeforeMethod
     public void setUp() {
-        logger.log.info("---Set up HomePageTest---");
+        logger=TestLogger.getLog();
+        logger.info("---Set up HomePageTest---");
         driverManager=DriverManagerFactory.getManager("CHROME");
         driver=driverManager.getDriver();
         driver.get("https://www.saucedemo.com/");
@@ -25,14 +27,14 @@ public class LoginpageTest {
 
     @Test
     public void LoginTest() {
-        logger.log.info("---Login Test---");
+        logger.info("---Login Test---");
         lp.login(driver);
 
     }
 
     @AfterMethod
     public void tearDown() {
-        logger.log.info("---Tear Down HomePageTest---");
+        logger.info("---Tear Down HomePageTest---");
         driver.quit();
     }
 }
