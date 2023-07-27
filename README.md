@@ -7,4 +7,5 @@ The following patterns are implemented :
 4. Fluent Page Object Model
 5. Facade Design Pattern
 
-mvn clean test
+To run the framework:
+                    mvn clean test
