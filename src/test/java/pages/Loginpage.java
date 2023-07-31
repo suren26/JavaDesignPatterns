@@ -1,15 +1,11 @@
 package pages;
 
-import driver.DriverManager;
-import driver.DriverManagerFactory;
 import lombok.extern.java.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+
 
 public class Loginpage {
     WebDriver driver;
@@ -20,14 +16,24 @@ public class Loginpage {
     @FindBy(id = "login-button")
     private WebElement loginbutton;
 
-    public void login(WebDriver driver){
+    public Loginpage login() throws InterruptedException {
+        driver.get("https://www.saucedemo.com/");
         String userName="standard_user";
         String pwd="secret_sauce";
         username.sendKeys(userName);
         password.sendKeys(pwd);
         loginbutton.click();
+        Thread.sleep(10000);
+        return this;
+    }
+    public void logout(){
+
+    }
+    public Loginpage using(WebDriver driver){
+        return new Loginpage(driver);
     }
     public Loginpage(WebDriver driver) {
+        this.driver=driver;
         PageFactory.initElements(driver, this);
     }
 }

@@ -4,9 +4,7 @@ import driver.DriverManagerFactory;
 import framework.TestLogger;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.Loginpage;
 
 public class LoginpageTest {
@@ -21,20 +19,24 @@ public class LoginpageTest {
         logger.info("---Set up HomePageTest---");
         driverManager=DriverManagerFactory.getManager("CHROME");
         driver=driverManager.getDriver();
-        driver.get("https://www.saucedemo.com/");
         lp=new Loginpage(driver);
     }
 
     @Test
-    public void LoginTest() {
+    public void LoginTest() throws InterruptedException {
         logger.info("---Login Test---");
-        lp.login(driver);
-
+        lp.using(driver).login();
     }
 
     @AfterMethod
     public void tearDown() {
         logger.info("---Tear Down HomePageTest---");
-        driver.quit();
+        try {
+            driver.quit();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Driver Closed : "+e);
+        }
     }
 }
