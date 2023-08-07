@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pages.Loginpage;
 
+import java.io.IOException;
+
 public class LoginpageTest {
 
     WebDriver driver;
@@ -14,7 +16,7 @@ public class LoginpageTest {
     Loginpage lp;
     Logger logger;
     @BeforeMethod
-    public void setUp() {
+    public void setUp() throws IOException {
         logger=TestLogger.getLog();
         logger.info("---Set up HomePageTest---");
         driverManager=DriverManagerFactory.getManager("CHROME");

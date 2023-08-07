@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 import pages.Loginpage;
 import pages.Productpage;
 
+import java.io.IOException;
+
 public class SwaglabsTest {
     WebDriver driver;
     DriverManager driverManager;
@@ -20,7 +22,7 @@ public class SwaglabsTest {
     Loginpage lp;
     Productpage pp;
     @BeforeMethod
-    public void setUp() throws InterruptedException {
+    public void setUp() throws InterruptedException, IOException {
         logger=TestLogger.getLog();
         logger.info("---Set up SwagsLabtest---");
         driverManager=DriverManagerFactory.getManager("CHROME");
